@@ -19,3 +19,4 @@ Route::get('/title={title?}', [ProductController::class, 'getProductTitle'])->na
 Route::get('/{id}', [ProductController::class, 'getProductId'])->name('getProductId');
 Route::post('/create', [ProductController::class, 'createProduct'])->name('createProduct');
 Route::patch('/{id}/edit', [ProductController::class, 'updateProduct'])->name('updateProduct');
+Route::delete('/{id}/delete', [ProductController::class, 'deleteProduct'])->name('deleteProduct');

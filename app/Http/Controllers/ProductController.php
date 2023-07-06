@@ -14,7 +14,6 @@ use Illuminate\Http\JsonResponse;
  *     title="RIA laravel API"
  * )
  */
-
 class ProductController extends Controller
 {
     /**
@@ -154,7 +153,7 @@ class ProductController extends Controller
      *         )
      *     ),
      *     @OA\Response(
-     *         response=200,
+     *         response=201,
      *         description="OK",
      *     )
      * )
@@ -236,5 +235,34 @@ class ProductController extends Controller
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/{id}/delete",
+     *     summary="Delete product by id",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                @OA\Property(
+     *                      property="products",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          @OA\Property(property="id", type="int"),
+     *                      ),
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="OK",
+     *     )
+     * )
+     */
+    public function deleteProduct(int $id)
+    {
+        Product::destroy($id);
     }
 }

@@ -231,7 +231,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "OK"
                     }
                 }
@@ -290,6 +290,39 @@
                 },
                 "responses": {
                     "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/{id}/delete": {
+            "delete": {
+                "summary": "Delete product by id",
+                "operationId": "1e84495e8216bc744ebec2005b3e03d8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "products": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
                         "description": "OK"
                     }
                 }

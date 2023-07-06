@@ -26,28 +26,15 @@ class ProductController extends Controller
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 @OA\Property(
-     *                     property="id",
-     *                     type="int"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="title",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="description",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="price",
-     *                     type="float"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_at",
-     *                     type="time"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="updated_at",
-     *                     type="time"
+     *                      property="products",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
+     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
+     *                          @OA\Property(property="price", type="float"),
+     *                          @OA\Property(property="created_at", type="time"),
+     *                          @OA\Property(property="updated_at", type="time"),
+     *                      ),
      *                 ),
      *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
      *             )
@@ -74,28 +61,15 @@ class ProductController extends Controller
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 @OA\Property(
-     *                     property="id",
-     *                     type="int"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="title",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="description",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="price",
-     *                     type="float"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_at",
-     *                     type="time"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="updated_at",
-     *                     type="time"
+     *                      property="products",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
+     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
+     *                          @OA\Property(property="price", type="float"),
+     *                          @OA\Property(property="created_at", type="time"),
+     *                          @OA\Property(property="updated_at", type="time"),
+     *                      ),
      *                 ),
      *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
      *             )
@@ -126,28 +100,15 @@ class ProductController extends Controller
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 @OA\Property(
-     *                     property="id",
-     *                     type="int"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="title",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="description",
-     *                     type="string"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="price",
-     *                     type="float"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="created_at",
-     *                     type="time"
-     *                 ),
-     *                  @OA\Property(
-     *                     property="updated_at",
-     *                     type="time"
+     *                      property="products",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
+     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
+     *                          @OA\Property(property="price", type="float"),
+     *                          @OA\Property(property="created_at", type="time"),
+     *                          @OA\Property(property="updated_at", type="time"),
+     *                      ),
      *                 ),
      *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
      *             )
@@ -181,9 +142,11 @@ class ProductController extends Controller
      *                      property="products",
      *                      type="array",
      *                      @OA\Items(
-     *                          @OA\Property(property="title", type="string"),
-     *                          @OA\Property(property="description", type="string"),
+     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
+     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
      *                          @OA\Property(property="price", type="float"),
+     *                          @OA\Property(property="created_at", type="time"),
+     *                          @OA\Property(property="updated_at", type="time"),
      *                      ),
      *                 ),
      *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
@@ -218,13 +181,15 @@ class ProductController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(
+     *                @OA\Property(
      *                      property="products",
      *                      type="array",
      *                      @OA\Items(
-     *                          @OA\Property(property="title", type="string"),
-     *                          @OA\Property(property="description", type="string"),
+     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
+     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
      *                          @OA\Property(property="price", type="float"),
+     *                          @OA\Property(property="created_at", type="time"),
+     *                          @OA\Property(property="updated_at", type="time"),
      *                      ),
      *                 ),
      *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}

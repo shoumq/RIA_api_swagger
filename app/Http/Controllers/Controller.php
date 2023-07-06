@@ -9,5 +9,11 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    /**
+     * @OA\Info(
+     *     version="1.0",
+     *     title="RIA laravel API"
+     * )
+     */
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

@@ -8,14 +8,105 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @OA\Info(
+ *     version="1.0",
+ *     title="RIA laravel API"
+ * )
+ */
+
 class ProductController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/",
+     *     summary="Listing products",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="int"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="title",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="description",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="price",
+     *                     type="float"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="created_at",
+     *                     type="time"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="updated_at",
+     *                     type="time"
+     *                 ),
+     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
+     */
     public function getProducts(): JsonResponse
     {
         $products = Product::all();
         return response()->json($products);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/title={title}",
+     *     summary="Listing a product by title",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="int"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="title",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="description",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="price",
+     *                     type="float"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="created_at",
+     *                     type="time"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="updated_at",
+     *                     type="time"
+     *                 ),
+     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
+     */
     public function getProductTitle(string $title = null): JsonResponse
     {
         try {
@@ -26,6 +117,48 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/{id}",
+     *     summary="Listing a product by id",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="int"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="title",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="description",
+     *                     type="string"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="price",
+     *                     type="float"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="created_at",
+     *                     type="time"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="updated_at",
+     *                     type="time"
+     *                 ),
+     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
+     */
     public function getProductId(int $id = 1): JsonResponse
     {
         try {
@@ -36,6 +169,33 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/create",
+     *     summary="Сreating a product according to the required parameters 'title', 'description', 'price'",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      property="products",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          @OA\Property(property="title", type="string"),
+     *                          @OA\Property(property="description", type="string"),
+     *                          @OA\Property(property="price", type="float"),
+     *                      ),
+     *                 ),
+     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
+     */
     public function createProduct(ProductRequest $request): ?JsonResponse
     {
         if ((mb_strlen($request->title) >= 2) && (mb_strlen($request->description) >= 10)) {
@@ -50,6 +210,33 @@ class ProductController extends Controller
         return null;
     }
 
+    /**
+     * @OA\Patch(
+     *     path="/api/{id}/edit",
+     *     summary="Product update by parameters 'title', 'description', 'price'",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      property="products",
+     *                      type="array",
+     *                      @OA\Items(
+     *                          @OA\Property(property="title", type="string"),
+     *                          @OA\Property(property="description", type="string"),
+     *                          @OA\Property(property="price", type="float"),
+     *                      ),
+     *                 ),
+     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *     )
+     * )
+     */
     public function updateProduct(Request $request, int $id = 1): JsonResponse
     {
         try {

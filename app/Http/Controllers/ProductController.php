@@ -20,6 +20,7 @@ class ProductController extends Controller
      * @OA\Get(
      *     path="/api/",
      *     summary="Listing products",
+     *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -55,6 +56,7 @@ class ProductController extends Controller
      * @OA\Get(
      *     path="/api/title={title}",
      *     summary="Listing a product by title",
+     *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -94,6 +96,7 @@ class ProductController extends Controller
      * @OA\Get(
      *     path="/api/{id}",
      *     summary="Listing a product by id",
+     *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -133,6 +136,7 @@ class ProductController extends Controller
      * @OA\Post(
      *     path="/api/create",
      *     summary="Сreating a product according to the required parameters 'title', 'description', 'price'",
+     *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -176,6 +180,7 @@ class ProductController extends Controller
      * @OA\Patch(
      *     path="/api/{id}/edit",
      *     summary="Product update by parameters 'title', 'description', 'price'",
+     *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -241,6 +246,7 @@ class ProductController extends Controller
      * @OA\Delete(
      *     path="/api/{id}/delete",
      *     summary="Delete product by id",
+     *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",

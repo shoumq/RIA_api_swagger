@@ -96,7 +96,7 @@ class ProductController extends Controller
      *     tags={"Product"},
      *     @OA\Parameter(
      *      name="id",
-     *      in="query",
+     *      in="path",
      *      required=false,
      *     @OA\Schema (
      *          type="int",
@@ -199,6 +199,14 @@ class ProductController extends Controller
      *     path="/api/{id}/edit",
      *     summary="Product update by parameters 'title', 'description', 'price'",
      *     tags={"Product"},
+     *     @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=false,
+     *     @OA\Schema (
+     *          type="int",
+     *     )
+     *    ),
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -280,6 +288,14 @@ class ProductController extends Controller
      *     path="/api/{id}/delete",
      *     summary="Delete product by id",
      *     tags={"Product"},
+     *     @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=false,
+     *     @OA\Schema (
+     *          type="int",
+     *     )
+     *    ),
      *     @OA\Response(
      *         response=204,
      *         description="",

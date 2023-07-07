@@ -130,7 +130,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "required": false,
                         "schema": {
                             "type": "int"
@@ -283,6 +283,16 @@
                 ],
                 "summary": "Product update by parameters 'title', 'description', 'price'",
                 "operationId": "0a33468b04a0b2a543b542e791dcf70c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -375,6 +385,16 @@
                 ],
                 "summary": "Delete product by id",
                 "operationId": "1e84495e8216bc744ebec2005b3e03d8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
                 "responses": {
                     "204": {
                         "description": ""

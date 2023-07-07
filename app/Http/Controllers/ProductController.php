@@ -21,104 +21,107 @@ class ProductController extends Controller
      *     path="/api/",
      *     summary="Listing products",
      *     tags={"Product"},
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                      property="products",
-     *                      type="array",
-     *                      @OA\Items(
-     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
-     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
-     *                          @OA\Property(property="price", type="float"),
-     *                          @OA\Property(property="created_at", type="time"),
-     *                          @OA\Property(property="updated_at", type="time"),
-     *                      ),
-     *                 ),
-     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
-     *             )
-     *         )
-     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK",
+     *         description="",
+     *         @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema (
+     *          type="array",
+     *               @OA\Items(
+     *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
+     *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
+     *                 @OA\Property(property="price", type="float", example=169.99),
+     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *            ),
+     *          )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
      *     )
      * )
      */
-    public function getProducts(): JsonResponse
+    public function getProducts(Request $request): JsonResponse
     {
-        $products = Product::all();
+        if ($request->title != null) {
+            $products = Product::where('title', $request->title)->get();
+        } else {
+            $products = Product::all();
+        }
         return response()->json($products);
     }
 
     /**
      * @OA\Get(
-     *     path="/api/title={title}",
+     *     path="/api/?title={title}",
      *     summary="Listing a product by title",
      *     tags={"Product"},
-     *     @OA\RequestBody(
+     *     @OA\Parameter(
+     *      name="title",
+     *      in="query",
+     *      required=false,
+     *    ),
+     *      @OA\Response(
+     *         response=200,
+     *         description="",
      *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                      property="products",
-     *                      type="array",
-     *                      @OA\Items(
-     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
-     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
-     *                          @OA\Property(property="price", type="float"),
-     *                          @OA\Property(property="created_at", type="time"),
-     *                          @OA\Property(property="updated_at", type="time"),
-     *                      ),
-     *                 ),
-     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
-     *             )
+     *         mediaType="application/json",
+     *         @OA\Schema (
+     *          type="array",
+     *               @OA\Items(
+     *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
+     *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
+     *                 @OA\Property(property="price", type="float", example=169.99),
+     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *            ),
+     *          )
      *         )
      *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="OK",
+     *      @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
      *     )
      * )
      */
-    public function getProductTitle(string $title = null): JsonResponse
-    {
-        try {
-            $product = Product::where('title', $title)->first();
-            return response()->json($product);
-        } catch (Exception $e) {
-            return response()->json($e->getMessage());
-        }
-    }
+    public function getProductTitle(Request $request) {}
 
     /**
      * @OA\Get(
      *     path="/api/{id}",
      *     summary="Listing a product by id",
      *     tags={"Product"},
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                      property="products",
-     *                      type="array",
-     *                      @OA\Items(
-     *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
-     *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
-     *                          @OA\Property(property="price", type="float"),
-     *                          @OA\Property(property="created_at", type="time"),
-     *                          @OA\Property(property="updated_at", type="time"),
-     *                      ),
-     *                 ),
-     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
-     *             )
-     *         )
-     *     ),
+     *     @OA\Parameter(
+     *      name="id",
+     *      in="query",
+     *      required=false,
+     *     @OA\Schema (
+     *          type="int",
+     *     )
+     *    ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK",
+     *         description="",
+     *         @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema (
+     *          type="array",
+     *               @OA\Items(
+     *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
+     *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
+     *                 @OA\Property(property="price", type="float", example=169.99),
+     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *            ),
+     *          )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
      *     )
      * )
      */
@@ -148,17 +151,32 @@ class ProductController extends Controller
      *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
      *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
      *                          @OA\Property(property="price", type="float"),
-     *                          @OA\Property(property="created_at", type="time"),
-     *                          @OA\Property(property="updated_at", type="time"),
      *                      ),
      *                 ),
-     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *                 example={"title": "Самса", "description": "Очень вкусная, с курицей", "price": 169.99}
      *             )
      *         )
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="OK",
+     *         description="",
+     *         @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema (
+     *          type="array",
+     *               @OA\Items(
+     *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
+     *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
+     *                 @OA\Property(property="price", type="float", example="169.99"),
+     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *            ),
+     *          )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
      *     )
      * )
      */
@@ -192,17 +210,32 @@ class ProductController extends Controller
      *                          @OA\Property(property="title", type="string", minLength=2, maxLength=50),
      *                          @OA\Property(property="description", type="string", minLength=10, maxLength=200),
      *                          @OA\Property(property="price", type="float"),
-     *                          @OA\Property(property="created_at", type="time"),
-     *                          @OA\Property(property="updated_at", type="time"),
      *                      ),
      *                 ),
-     *                 example={"id": 1, "title": "Самса", "description": "Очень вкусная, с курицей", "price": "219.99", "created_at": "2023-07-06T08:27:30.000000Z", "updated_at": "2023-07-06T09:45:07.000000Z"}
+     *                 example={"title": "Самса", "description": "Очень вкусная, с курицей", "price": 169.99}
      *             )
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK",
+     *         description="",
+     *         @OA\MediaType(
+     *         mediaType="application/json",
+     *         @OA\Schema (
+     *          type="array",
+     *               @OA\Items(
+     *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
+     *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
+     *                 @OA\Property(property="price", type="float", example="169.99"),
+     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *            ),
+     *          )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
      *     )
      * )
      */
@@ -247,23 +280,13 @@ class ProductController extends Controller
      *     path="/api/{id}/delete",
      *     summary="Delete product by id",
      *     tags={"Product"},
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                @OA\Property(
-     *                      property="products",
-     *                      type="array",
-     *                      @OA\Items(
-     *                          @OA\Property(property="id", type="int"),
-     *                      ),
-     *                 ),
-     *             )
-     *         )
-     *     ),
      *     @OA\Response(
      *         response=204,
-     *         description="OK",
+     *         description="",
+     *     ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="Not Found",
      *     )
      * )
      */

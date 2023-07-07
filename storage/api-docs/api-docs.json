@@ -12,117 +12,110 @@
                 ],
                 "summary": "Listing products",
                 "operationId": "d60f6532d730ced60e88ef335d823570",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "products": {
-                                        "type": "array",
-                                        "items": {
-                                            "properties": {
-                                                "title": {
-                                                    "type": "string",
-                                                    "maxLength": 50,
-                                                    "minLength": 2
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "maxLength": 200,
-                                                    "minLength": 10
-                                                },
-                                                "price": {
-                                                    "type": "number",
-                                                    "format": "float"
-                                                },
-                                                "created_at": {
-                                                    "type": "time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "time"
-                                                }
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "maxLength": 50,
+                                                "minLength": 2,
+                                                "example": "Самса"
                                             },
-                                            "type": "object"
-                                        }
+                                            "description": {
+                                                "type": "string",
+                                                "maxLength": 200,
+                                                "minLength": 10,
+                                                "example": "Очень вкусная, с курицей"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 169.99
+                                            },
+                                            "created_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T08:27:30.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T09:45:07.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
                                     }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "id": 1,
-                                    "title": "Самса",
-                                    "description": "Очень вкусная, с курицей",
-                                    "price": "219.99",
-                                    "created_at": "2023-07-06T08:27:30.000000Z",
-                                    "updated_at": "2023-07-06T09:45:07.000000Z"
                                 }
                             }
                         }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             }
         },
-        "/api/title={title}": {
+        "/api/?title={title}": {
             "get": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Listing a product by title",
-                "operationId": "0339dccec6ac15728febcd76f4fb9657",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "products": {
-                                        "type": "array",
-                                        "items": {
-                                            "properties": {
-                                                "title": {
-                                                    "type": "string",
-                                                    "maxLength": 50,
-                                                    "minLength": 2
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "maxLength": 200,
-                                                    "minLength": 10
-                                                },
-                                                "price": {
-                                                    "type": "number",
-                                                    "format": "float"
-                                                },
-                                                "created_at": {
-                                                    "type": "time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "time"
-                                                }
+                "operationId": "bb05890200444eba223737440acc3e3c",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "maxLength": 50,
+                                                "minLength": 2,
+                                                "example": "Самса"
                                             },
-                                            "type": "object"
-                                        }
+                                            "description": {
+                                                "type": "string",
+                                                "maxLength": 200,
+                                                "minLength": 10,
+                                                "example": "Очень вкусная, с курицей"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 169.99
+                                            },
+                                            "created_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T08:27:30.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T09:45:07.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
                                     }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "id": 1,
-                                    "title": "Самса",
-                                    "description": "Очень вкусная, с курицей",
-                                    "price": "219.99",
-                                    "created_at": "2023-07-06T08:27:30.000000Z",
-                                    "updated_at": "2023-07-06T09:45:07.000000Z"
                                 }
                             }
                         }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             }
@@ -134,56 +127,59 @@
                 ],
                 "summary": "Listing a product by id",
                 "operationId": "e717cfab0bacaf599213f873b568de73",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "products": {
-                                        "type": "array",
-                                        "items": {
-                                            "properties": {
-                                                "title": {
-                                                    "type": "string",
-                                                    "maxLength": 50,
-                                                    "minLength": 2
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "maxLength": 200,
-                                                    "minLength": 10
-                                                },
-                                                "price": {
-                                                    "type": "number",
-                                                    "format": "float"
-                                                },
-                                                "created_at": {
-                                                    "type": "time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "time"
-                                                }
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "maxLength": 50,
+                                                "minLength": 2,
+                                                "example": "Самса"
                                             },
-                                            "type": "object"
-                                        }
+                                            "description": {
+                                                "type": "string",
+                                                "maxLength": 200,
+                                                "minLength": 10,
+                                                "example": "Очень вкусная, с курицей"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 169.99
+                                            },
+                                            "created_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T08:27:30.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T09:45:07.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
                                     }
-                                },
-                                "type": "object",
-                                "example": {
-                                    "id": 1,
-                                    "title": "Самса",
-                                    "description": "Очень вкусная, с курицей",
-                                    "price": "219.99",
-                                    "created_at": "2023-07-06T08:27:30.000000Z",
-                                    "updated_at": "2023-07-06T09:45:07.000000Z"
                                 }
                             }
                         }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             }
@@ -217,12 +213,6 @@
                                                 "price": {
                                                     "type": "number",
                                                     "format": "float"
-                                                },
-                                                "created_at": {
-                                                    "type": "time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "time"
                                                 }
                                             },
                                             "type": "object"
@@ -231,12 +221,9 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "id": 1,
                                     "title": "Самса",
                                     "description": "Очень вкусная, с курицей",
-                                    "price": "219.99",
-                                    "created_at": "2023-07-06T08:27:30.000000Z",
-                                    "updated_at": "2023-07-06T09:45:07.000000Z"
+                                    "price": 169.99
                                 }
                             }
                         }
@@ -244,7 +231,47 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "OK"
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "maxLength": 50,
+                                                "minLength": 2,
+                                                "example": "Самса"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "maxLength": 200,
+                                                "minLength": 10,
+                                                "example": "Очень вкусная, с курицей"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": "169.99"
+                                            },
+                                            "created_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T08:27:30.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T09:45:07.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             }
@@ -278,12 +305,6 @@
                                                 "price": {
                                                     "type": "number",
                                                     "format": "float"
-                                                },
-                                                "created_at": {
-                                                    "type": "time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "time"
                                                 }
                                             },
                                             "type": "object"
@@ -292,12 +313,9 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "id": 1,
                                     "title": "Самса",
                                     "description": "Очень вкусная, с курицей",
-                                    "price": "219.99",
-                                    "created_at": "2023-07-06T08:27:30.000000Z",
-                                    "updated_at": "2023-07-06T09:45:07.000000Z"
+                                    "price": 169.99
                                 }
                             }
                         }
@@ -305,7 +323,47 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "maxLength": 50,
+                                                "minLength": 2,
+                                                "example": "Самса"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "maxLength": 200,
+                                                "minLength": 10,
+                                                "example": "Очень вкусная, с курицей"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": "169.99"
+                                            },
+                                            "created_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T08:27:30.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "time",
+                                                "example": "2023-07-06T09:45:07.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             }
@@ -317,31 +375,12 @@
                 ],
                 "summary": "Delete product by id",
                 "operationId": "1e84495e8216bc744ebec2005b3e03d8",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "products": {
-                                        "type": "array",
-                                        "items": {
-                                            "properties": {
-                                                "id": {
-                                                    "type": "integer"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "204": {
-                        "description": "OK"
+                        "description": ""
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 }
             }

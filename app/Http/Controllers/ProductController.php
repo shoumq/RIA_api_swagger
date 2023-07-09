@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
@@ -87,7 +88,9 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function getProductTitle(Request $request) {}
+    public function getProductTitle(Request $request)
+    {
+    }
 
     /**
      * @OA\Get(
@@ -182,16 +185,13 @@ class ProductController extends Controller
      */
     public function createProduct(ProductRequest $request): ?JsonResponse
     {
-        if ((mb_strlen($request->title) >= 2) && (mb_strlen($request->description) >= 10)) {
-            $product = new Product();
-            $product->title = $request->title;
-            $product->description = $request->description;
-            $product->price = $request->price;
-            $product->save();
+        $product = new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->save();
 
-            return response()->json($product);
-        }
-        return null;
+        return response()->json($product);
     }
 
     /**
@@ -247,7 +247,7 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function updateProduct(Request $request, int $id = 1): JsonResponse
+    public function updateProduct(ProductUpdateRequest $request, int $id = 1): JsonResponse
     {
         try {
             $product = Product::find($id);
@@ -268,13 +268,9 @@ class ProductController extends Controller
                 $productPrice = $request->price;
             }
 
-            $productArray = array(
-                $productName, $productDescription, $productPrice
-            );
-
-            $product->title = $productArray[0];
-            $product->description = $productArray[1];
-            $product->price = $productArray[2];
+            $product->title = $productName;
+            $product->description = $productDescription;
+            $product->price = $productPrice;
             $product->save();
 
             return response()->json($product);

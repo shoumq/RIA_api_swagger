@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, 'getProducts'])->name('getProducts');
-Route::get('/{id}', [ProductController::class, 'getProductId'])->name('getProductId');
-Route::post('/create', [ProductController::class, 'createProduct'])->name('createProduct');
-Route::patch('/{id}/edit', [ProductController::class, 'updateProduct'])->name('updateProduct');
-Route::delete('/{id}/delete', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+Route::get('/swagger', [ProductController::class, 'getProducts'])->name('getProducts');
+Route::get('/swagger/{id}', [ProductController::class, 'getProductId'])->name('getProductId');
+Route::post('/swagger/create', [ProductController::class, 'createProduct'])->name('createProduct');
+Route::patch('/swagger/{id}/edit', [ProductController::class, 'updateProduct'])->name('updateProduct');
+Route::delete('/swagger/{id}/delete', [ProductController::class, 'deleteProduct'])->name('deleteProduct');

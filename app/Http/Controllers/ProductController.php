@@ -19,7 +19,7 @@ class ProductController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/swagger",
+     *     path="/swagger/api/",
      *     summary="Listing products",
      *     tags={"Product"},
      *     @OA\Response(
@@ -57,7 +57,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/?title={title}/swagger",
+     *     path="/swagger/api/?title={title}/swagger/",
      *     summary="Listing a product by title",
      *     tags={"Product"},
      *     @OA\Parameter(
@@ -94,7 +94,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/{id}/swagger",
+     *     path="/swagger/api/{id}/",
      *     summary="Listing a product by id",
      *     tags={"Product"},
      *     @OA\Parameter(
@@ -140,7 +140,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/create/swagger",
+     *     path="/swagger/api/create/",
      *     summary="Сreating a product according to the required parameters 'title', 'description', 'price'",
      *     tags={"Product"},
      *     @OA\RequestBody(
@@ -196,7 +196,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Patch(
-     *     path="/api/{id}/edit/swagger",
+     *     path="/swagger/api/{id}/edit/",
      *     summary="Product update by parameters 'title', 'description', 'price'",
      *     tags={"Product"},
      *     @OA\Parameter(
@@ -281,7 +281,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/{id}/delete/swagger",
+     *     path="/swagger/api/{id}/delete/",
      *     summary="Delete product by id",
      *     tags={"Product"},
      *     @OA\Parameter(

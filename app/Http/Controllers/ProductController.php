@@ -128,7 +128,7 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function getProductId(int $id = 1): JsonResponse
+    public function getProductId($id): JsonResponse
     {
         try {
             $product = Product::find($id);

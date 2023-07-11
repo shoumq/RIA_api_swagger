@@ -184,13 +184,13 @@
                 }
             }
         },
-        "/api/create": {
+        "/api/create/": {
             "post": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Сreating a product according to the required parameters 'title', 'description', 'price'",
-                "operationId": "cae2d9aa19f411f19468ab75e26a142a",
+                "operationId": "3b2176b5a3f1192db9b2143ecc13d9a1",
                 "requestBody": {
                     "content": {
                         "application/json": {

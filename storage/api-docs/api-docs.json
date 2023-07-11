@@ -276,13 +276,13 @@
                 }
             }
         },
-        "/api/{id}/edit/": {
+        "/api/edit/{id}": {
             "patch": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Product update by parameters 'title', 'description', 'price'",
-                "operationId": "76bfb0a2bc2809b278a91136442404ab",
+                "operationId": "228f12177804f27a527d4ad391effbd8",
                 "parameters": [
                     {
                         "name": "id",
@@ -378,13 +378,13 @@
                 }
             }
         },
-        "/api/{id}/delete/": {
+        "/api/delete/{id}": {
             "delete": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Delete product by id",
-                "operationId": "59a3411d0c18beb8684c36dc51120a06",
+                "operationId": "b3f37ba2488e5334259418066452aaa9",
                 "parameters": [
                     {
                         "name": "id",

@@ -204,7 +204,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Patch(
-     *     path="/api/{id}/edit/",
+     *     path="/api/edit/{id}",
      *     summary="Product update by parameters 'title', 'description', 'price'",
      *     tags={"Product"},
      *     @OA\Parameter(
@@ -289,7 +289,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/{id}/delete/",
+     *     path="/api/delete/{id}",
      *     summary="Delete product by id",
      *     tags={"Product"},
      *     @OA\Parameter(

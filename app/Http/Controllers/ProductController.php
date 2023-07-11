@@ -47,10 +47,14 @@ class ProductController extends Controller
      */
     public function getProducts(Request $request): JsonResponse
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST');
+        header("Access-Control-Allow-Headers: X-Requested-With");
+
         if ($request->title != null) {
-            $products = Product::where('title', $request->title)->get();
+            $products = Product::where('title', $request->title)->latest()->get();
         } else {
-            $products = Product::all();
+            $products = Product::latest()->get();
         }
         return response()->json($products);
     }
@@ -130,6 +134,10 @@ class ProductController extends Controller
      */
     public function getProductId($id): JsonResponse
     {
+//        header('Access-Control-Allow-Origin: *');
+//        header('Access-Control-Allow-Methods: GET, POST');
+//        header("Access-Control-Allow-Headers: X-Requested-With");
+
         try {
             $product = Product::find($id);
             return response()->json($product);
@@ -183,7 +191,7 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function createProduct(ProductRequest $request): ?JsonResponse
+    public function createProduct(Request $request): JsonResponse
     {
         $product = new Product();
         $product->title = $request->title;

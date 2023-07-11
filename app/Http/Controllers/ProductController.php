@@ -140,7 +140,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/create/",
+     *     path="/api/create",
      *     summary="Сreating a product according to the required parameters 'title', 'description', 'price'",
      *     tags={"Product"},
      *     @OA\RequestBody(

@@ -59,13 +59,13 @@
                 }
             }
         },
-        "/api/?title={title}": {
+        "/api/?title={title}/swagger/": {
             "get": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Listing a product by title",
-                "operationId": "bb05890200444eba223737440acc3e3c",
+                "operationId": "2540b0d78c0b776b89542e1a774786d1",
                 "parameters": [
                     {
                         "name": "title",
@@ -120,13 +120,13 @@
                 }
             }
         },
-        "/api/{id}": {
+        "/api/{id}/": {
             "get": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Listing a product by id",
-                "operationId": "e717cfab0bacaf599213f873b568de73",
+                "operationId": "2249e6c14cb8bf3d610024cff4775881",
                 "parameters": [
                     {
                         "name": "id",
@@ -184,13 +184,13 @@
                 }
             }
         },
-        "/api/create": {
+        "/api/create/": {
             "post": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Сreating a product according to the required parameters 'title', 'description', 'price'",
-                "operationId": "cae2d9aa19f411f19468ab75e26a142a",
+                "operationId": "3b2176b5a3f1192db9b2143ecc13d9a1",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -276,13 +276,13 @@
                 }
             }
         },
-        "/api/{id}/edit": {
+        "/api/{id}/edit/": {
             "patch": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Product update by parameters 'title', 'description', 'price'",
-                "operationId": "0a33468b04a0b2a543b542e791dcf70c",
+                "operationId": "76bfb0a2bc2809b278a91136442404ab",
                 "parameters": [
                     {
                         "name": "id",
@@ -378,13 +378,13 @@
                 }
             }
         },
-        "/api/{id}/delete": {
+        "/api/{id}/delete/": {
             "delete": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Delete product by id",
-                "operationId": "1e84495e8216bc744ebec2005b3e03d8",
+                "operationId": "59a3411d0c18beb8684c36dc51120a06",
                 "parameters": [
                     {
                         "name": "id",

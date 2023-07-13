@@ -120,13 +120,13 @@
                 }
             }
         },
-        "/api/{id}/": {
+        "/api/id/{id}/": {
             "get": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Listing a product by id",
-                "operationId": "2249e6c14cb8bf3d610024cff4775881",
+                "operationId": "4961612cf6bcca982f2667738529a707",
                 "parameters": [
                     {
                         "name": "id",

@@ -98,7 +98,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/{id}/",
+     *     path="/api/id/{id}/",
      *     summary="Listing a product by id",
      *     tags={"Product"},
      *     @OA\Parameter(

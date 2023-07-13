@@ -91,7 +91,7 @@
                     "200": {
                         "description": "",
                         "content": {
-                            "application / json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -147,7 +147,7 @@
                 "operationId": "cae2d9aa19f411f19468ab75e26a142a",
                 "requestBody": {
                     "content": {
-                        "application / json": {
+                        "application/json": {
                             "schema": {
                                 "properties": {
                                     "products": {
@@ -187,7 +187,7 @@
                     "201": {
                         "description": "",
                         "content": {
-                            "application / json": {
+                            "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -253,7 +253,7 @@
                 ],
                 "requestBody": {
                     "content": {
-                        "application / json": {
+                        "application/json": {
                             "schema": {
                                 "properties": {
                                     "products": {

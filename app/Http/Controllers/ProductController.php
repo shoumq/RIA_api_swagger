@@ -86,7 +86,7 @@ class ProductController extends Controller
      *         response=200,
      *         description="",
      *         @OA\MediaType(
-     *         mediaType="application / json",
+     *         mediaType="application/json",
      *         @OA\Schema (
      *          type="array",
      *               @OA\Items(
@@ -110,7 +110,7 @@ class ProductController extends Controller
     {
 //        header('Access-Control-Allow-Origin: *');
 //        header('Access-Control-Allow-Methods: GET, POST');
-//        header("Access - Control - Allow - Headers: X - Requested - With");
+//        header("Access-Control-Allow-Headers: X-Requested-With");
 
         try {
             $product = Product::find($id);
@@ -133,7 +133,7 @@ class ProductController extends Controller
      *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
-     *             mediaType="application / json",
+     *             mediaType="application/json",
      *             @OA\Schema(
      *                 @OA\Property(
      *                      property="products",
@@ -152,7 +152,7 @@ class ProductController extends Controller
      *         response=201,
      *         description="",
      *         @OA\MediaType(
-     *         mediaType="application / json",
+     *         mediaType="application/json",
      *         @OA\Schema (
      *          type="array",
      *               @OA\Items(
@@ -198,7 +198,7 @@ class ProductController extends Controller
      *    ),
      *     @OA\RequestBody(
      *         @OA\MediaType(
-     *             mediaType="application / json",
+     *             mediaType="application/json",
      *             @OA\Schema(
      *                @OA\Property(
      *                      property="products",

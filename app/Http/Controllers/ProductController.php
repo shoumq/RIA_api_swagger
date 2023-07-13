@@ -191,7 +191,7 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function createProduct(Request $request): JsonResponse
+    public function createProduct(ProductRequest $request): JsonResponse
     {
         $product = new Product();
         $product->title = $request->title;

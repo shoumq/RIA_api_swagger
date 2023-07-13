@@ -22,6 +22,11 @@ class ProductController extends Controller
      *     path="/api/",
      *     summary="Listing products",
      *     tags={"Product"},
+     *     @OA\Parameter(
+     *      name="title",
+     *      in="query",
+     *      required=false,
+     *    ),
      *     @OA\Response(
      *         response=200,
      *         description="",
@@ -30,6 +35,7 @@ class ProductController extends Controller
      *         @OA\Schema (
      *          type="array",
      *               @OA\Items(
+     *                 @OA\Property(property="id", type="number", example="1"),
      *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
      *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
      *                 @OA\Property(property="price", type="float", example=169.99),
@@ -57,43 +63,6 @@ class ProductController extends Controller
             $products = Product::latest()->get();
         }
         return response()->json($products);
-    }
-
-    /**
-     * @OA\Get(
-     *     path="/api/?title={title}/swagger/",
-     *     summary="Listing a product by title",
-     *     tags={"Product"},
-     *     @OA\Parameter(
-     *      name="title",
-     *      in="query",
-     *      required=false,
-     *    ),
-     *      @OA\Response(
-     *         response=200,
-     *         description="",
-     *         @OA\MediaType(
-     *         mediaType="application/json",
-     *         @OA\Schema (
-     *          type="array",
-     *               @OA\Items(
-     *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
-     *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
-     *                 @OA\Property(property="price", type="float", example=169.99),
-     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
-     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
-     *            ),
-     *          )
-     *         )
-     *     ),
-     *      @OA\Response(
-     *         response=500,
-     *         description="Internal Server Error",
-     *     )
-     * )
-     */
-    public function getProductTitle(Request $request)
-    {
     }
 
     /**

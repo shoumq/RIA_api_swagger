@@ -12,60 +12,6 @@
                 ],
                 "summary": "Listing products",
                 "operationId": "d60f6532d730ced60e88ef335d823570",
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "title": {
-                                                "type": "string",
-                                                "maxLength": 50,
-                                                "minLength": 2,
-                                                "example": "Самса"
-                                            },
-                                            "description": {
-                                                "type": "string",
-                                                "maxLength": 200,
-                                                "minLength": 10,
-                                                "example": "Очень вкусная, с курицей"
-                                            },
-                                            "price": {
-                                                "type": "number",
-                                                "format": "float",
-                                                "example": 169.99
-                                            },
-                                            "created_at": {
-                                                "type": "time",
-                                                "example": "2023-07-06T08:27:30.000000Z"
-                                            },
-                                            "updated_at": {
-                                                "type": "time",
-                                                "example": "2023-07-06T09:45:07.000000Z"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
-                    }
-                }
-            }
-        },
-        "/api/?title={title}/swagger/": {
-            "get": {
-                "tags": [
-                    "Product"
-                ],
-                "summary": "Listing a product by title",
-                "operationId": "2540b0d78c0b776b89542e1a774786d1",
                 "parameters": [
                     {
                         "name": "title",
@@ -82,6 +28,10 @@
                                     "type": "array",
                                     "items": {
                                         "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": "1"
+                                            },
                                             "title": {
                                                 "type": "string",
                                                 "maxLength": 50,

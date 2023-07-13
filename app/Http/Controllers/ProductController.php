@@ -6,8 +6,10 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @OA\Info(
@@ -58,7 +60,8 @@ class ProductController extends Controller
         header("Access-Control-Allow-Headers: X-Requested-With");
 
         if ($request->title != null) {
-            $products = Product::where('title', $request->title)->latest()->get();
+//            $products = Product::where(UPPER('{$title}'), 'ilike', $request->title)->latest()->get();
+            $products = Product::where('title', 'like', '%' . $request->title . '%')->get();
         } else {
             $products = Product::latest()->get();
         }
@@ -82,15 +85,16 @@ class ProductController extends Controller
      *         response=200,
      *         description="",
      *         @OA\MediaType(
-     *         mediaType="application/json",
+     *         mediaType="application / json",
      *         @OA\Schema (
      *          type="array",
      *               @OA\Items(
+     *                 @OA\Property(property="id", type="number", example="1"),
      *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
      *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
      *                 @OA\Property(property="price", type="float", example=169.99),
-     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
-     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *                 @OA\Property(property="created_at", type="time", example="2023 - 07 - 06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023 - 07 - 06T09:45:07.000000Z"),
      *            ),
      *          )
      *         )
@@ -101,15 +105,21 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function getProductId($id): JsonResponse
+    public function getProductId($id): JsonResponse|bool|int
     {
 //        header('Access-Control-Allow-Origin: *');
 //        header('Access-Control-Allow-Methods: GET, POST');
-//        header("Access-Control-Allow-Headers: X-Requested-With");
+//        header("Access - Control - Allow - Headers: X - Requested - With");
 
         try {
             $product = Product::find($id);
-            return response()->json($product);
+            if ($product == null) {
+                return response()->json([
+                    'message' => 'Product not found.'
+                ], 404);
+            } else {
+                return response()->json($product);
+            }
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }
@@ -122,7 +132,7 @@ class ProductController extends Controller
      *     tags={"Product"},
      *     @OA\RequestBody(
      *         @OA\MediaType(
-     *             mediaType="application/json",
+     *             mediaType="application / json",
      *             @OA\Schema(
      *                 @OA\Property(
      *                      property="products",
@@ -141,15 +151,16 @@ class ProductController extends Controller
      *         response=201,
      *         description="",
      *         @OA\MediaType(
-     *         mediaType="application/json",
+     *         mediaType="application / json",
      *         @OA\Schema (
      *          type="array",
      *               @OA\Items(
+     *                 @OA\Property(property="id", type="number", example="1"),
      *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
      *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
      *                 @OA\Property(property="price", type="float", example="169.99"),
-     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
-     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *                 @OA\Property(property="created_at", type="time", example="2023 - 07 - 06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023 - 07 - 06T09:45:07.000000Z"),
      *            ),
      *          )
      *         )
@@ -186,7 +197,7 @@ class ProductController extends Controller
      *    ),
      *     @OA\RequestBody(
      *         @OA\MediaType(
-     *             mediaType="application/json",
+     *             mediaType="application / json",
      *             @OA\Schema(
      *                @OA\Property(
      *                      property="products",
@@ -209,11 +220,12 @@ class ProductController extends Controller
      *         @OA\Schema (
      *          type="array",
      *               @OA\Items(
+     *                 @OA\Property(property="id", type="number", example="1"),
      *                 @OA\Property(property="title", type="string", minLength=2, maxLength=50, example="Самса"),
      *                 @OA\Property(property="description", type="string", minLength=10, maxLength=200, example="Очень вкусная, с курицей"),
      *                 @OA\Property(property="price", type="float", example="169.99"),
-     *                 @OA\Property(property="created_at", type="time", example="2023-07-06T08:27:30.000000Z"),
-     *                 @OA\Property(property="updated_at", type="time", example="2023-07-06T09:45:07.000000Z"),
+     *                 @OA\Property(property="created_at", type="time", example="2023 - 07 - 06T08:27:30.000000Z"),
+     *                 @OA\Property(property="updated_at", type="time", example="2023 - 07 - 06T09:45:07.000000Z"),
      *            ),
      *          )
      *         )

@@ -24,8 +24,8 @@ class ProductUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['require', 'string', 'max:50', 'min:2'],
-            'description' => ['require', 'string', 'max:200', 'min:10'],
+            'title' => ['required', 'string', 'max:50', 'min:2'],
+            'description' => ['required', 'string', 'max:200', 'min:10'],
         ];
     }
 }

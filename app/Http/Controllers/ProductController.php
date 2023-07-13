@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use Exception;
+use http\Env\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -241,28 +242,34 @@ class ProductController extends Controller
         try {
             $product = Product::find($id);
 
-            $productName = $product->title;
-            $productDescription = $product->description;
-            $productPrice = $product->price;
+            if ($product == null) {
+                return response()->json([
+                    'message' => 'Product not found.'
+                ], 404);
+            } else {
+                $productName = $product->title;
+                $productDescription = $product->description;
+                $productPrice = $product->price;
 
-            if ($request->title != null) {
-                $productName = $request->title;
+                if ($request->title != null) {
+                    $productName = $request->title;
+                }
+
+                if ($request->description != null) {
+                    $productDescription = $request->description;
+                }
+
+                if ($request->price != null) {
+                    $productPrice = $request->price;
+                }
+
+                $product->title = $productName;
+                $product->description = $productDescription;
+                $product->price = $productPrice;
+                $product->save();
+
+                return response()->json($product);
             }
-
-            if ($request->description != null) {
-                $productDescription = $request->description;
-            }
-
-            if ($request->price != null) {
-                $productPrice = $request->price;
-            }
-
-            $product->title = $productName;
-            $product->description = $productDescription;
-            $product->price = $productPrice;
-            $product->save();
-
-            return response()->json($product);
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }
@@ -291,8 +298,16 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function deleteProduct(int $id)
+    public function deleteProduct(int $id): JsonResponse
     {
-        Product::destroy($id);
+        $product = Product::find($id);
+        if ($product == null) {
+            return response()->json([
+                'message' => 'Product not found.'
+            ], 404);
+        } else {
+            $product->delete();
+            return response()->json('success!');
+        }
     }
 }

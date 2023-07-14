@@ -103,6 +103,10 @@ class ProductController extends Controller
      *      @OA\Response(
      *         response=500,
      *         description="Internal Server Error",
+     *     ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="Product not found",
      *     )
      * )
      */

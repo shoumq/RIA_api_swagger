@@ -61,7 +61,7 @@ class ProductController extends Controller
         header("Access-Control-Allow-Headers: X-Requested-With");
 
         if ($request->title != null) {
-//            $products = Product::where(UPPER('{$title}'), 'ilike', $request->title)->latest()->get();
+            header('Access-Control-Allow-Origin: *');
             $products = Product::where('title', 'like', '%' . $request->title . '%')->get();
         } else {
             $products = Product::latest()->get();

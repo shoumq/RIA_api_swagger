@@ -5,13 +5,13 @@
         "version": "1.0"
     },
     "paths": {
-        "/api/": {
+        "/api": {
             "get": {
                 "tags": [
                     "Product"
                 ],
                 "summary": "Listing products",
-                "operationId": "d60f6532d730ced60e88ef335d823570",
+                "operationId": "88ad70e97915438c4dad30d8524863e0",
                 "parameters": [
                     {
                         "name": "title",

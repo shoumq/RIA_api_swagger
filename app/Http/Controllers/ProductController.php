@@ -153,7 +153,7 @@ class ProductController extends Controller
      *         )
      *     ),
      *     @OA\Response(
-     *         response=201,
+     *         response=200,
      *         description="",
      *         @OA\MediaType(
      *         mediaType="application/json",
@@ -293,7 +293,7 @@ class ProductController extends Controller
      *     )
      *    ),
      *     @OA\Response(
-     *         response=204,
+     *         response=200,
      *         description="",
      *     ),
      *      @OA\Response(

@@ -187,7 +187,7 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "",
                         "content": {
                             "application/json": {
@@ -361,7 +361,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
+                    "200": {
                         "description": ""
                     },
                     "404": {
